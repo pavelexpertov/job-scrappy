@@ -28,10 +28,13 @@ class TestIbmParserDataSciencePage(unittest.TestCase):
     def test_roles_responsibilities_extraction(self):
         '''Test successful extraction of the roles and responsibilities content'''
         parser = IbmParser(self.PAGE_CONTENT)
+        extracted_content = parser.get_job_metadata()['roles_and_responsibilities']
         expected_content = "At IBM, work is more than a job - it's a calling: To build. To design. To code. To consult. To think along with clients and sell. To make markets. To invent. To collaborate. Not just to do something better, but to attempt things you've never thought possible. Are you ready to lead in this new era of technology and solve some of the world's most challenging problems? If so, let’s talk."
-        self.assertIn(expected_content, parser.get_job_metadata()['roles_and_responsibilities'])
+        self.assertIn(expected_content, extracted_content)
         expected_content = "Responsibilities include:\nCommunicate work to and receive feedback by technical and non-technical "
-        self.assertIn(expected_content, parser.get_job_metadata()['roles_and_responsibilities'])
+        self.assertIn(expected_content, extracted_content)
+        expected_last_item = "CIODEM20"
+        self.assertIn(expected_last_item, extracted_content)
 
     def test_required_skills_and_qualification(self):
         '''Test successful extraction of required skills and qualifications.'''
