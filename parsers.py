@@ -15,6 +15,8 @@ class IbmParser():
         self.introduction_content = introduction_span.next_sibling.next_sibling.next_sibling
         info_dict = self._parse_job_description(job_desc_tag)
         self.roles_and_responsibilities = info_dict['roles_and_responsibilities']
+        self.required_stuff = info_dict['required_stuff']
+        self.preferred_stuff = info_dict['preferred_stuff']
 
 
     def get_job_metadata(self):
@@ -22,7 +24,9 @@ class IbmParser():
         return {
             'title': self.title,
             'introduction': self.introduction_content,
-            'roles_and_responsibilities': self.roles_and_responsibilities
+            'roles_and_responsibilities': self.roles_and_responsibilities,
+            'required_stuff': self.required_stuff,
+            'preferred_stuff': self.preferred_stuff
         }
 
     def _parse_job_description(self, job_desc_tag):
