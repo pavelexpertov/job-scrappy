@@ -1,0 +1,47 @@
+{
+    "description": "At Google, data drives all of our decision-making. Quantitative Analysts work all across the organization to help shape Google's business and technical strategies by processing, analyzing and interpreting huge data sets. Using analytical excellence and statistical methods, you mine through data to identify opportunities for Google and our clients to operate more efficiently, from enhancing advertising efficacy to network infrastructure optimization to studying user behavior. As an analyst, you do more than just crunch the numbers. You work with Engineers, Product Managers, Sales Associates and Marketing teams to adjust Google's practices according to your findings. Identifying the problem is only half the job; you also figure out the solution.<p>Google is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to take on some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From Google Ads to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another.</p>",
+    "title": "Senior Data Scientist, Waze",
+    "education_levels": [
+        "MASTERS_OR_EQUIVALENT"
+    ],
+    "building_pins": [
+        {
+            "lat": 32.070043,
+            "lon": 34.794087
+        }
+    ],
+    "created": "2020-11-23T19:31:01.496Z",
+    "qualifications": "<p>Minimum qualifications:</p><ul>\n<li>Master's Degree in a quantitative discipline (e.g., Statistics, Bioinformatics, Computational Biology, Computer Science, or Applied Mathematics) or equivalent practical experience.</li>\n<li>Experience in Machine Learning.</li>\n<li>Experience working as a data analyst, data scientist, statistician, computational biologist, bioinformatician, or related role.</li>\n</ul><br><p>Preferred qualifications:</p><ul>\n<li>Experience in data science.</li>\n<li>Experience in software engineering, including gathering data for analysis, performing data filtering and preparation, and running tests at scale.</li>\n<li>Knowledge of data analysis tools and techniques, including SQL, R, and Colab.</li>\n</ul>",
+    "locations": [
+        {
+            "address_lines": [
+                "Yigal Alon St 98, Tel Aviv-Yafo, Israel"
+            ],
+            "post_code": null,
+            "country_code": "IL",
+            "city": "Tel Aviv-Yafo",
+            "lat": 32.0701279,
+            "country": "Tel Aviv District",
+            "lon": 34.7940931,
+            "display": "Tel Aviv-Yafo, Israel"
+        }
+    ],
+    "company_id": "projects/gweb-careers-proto/companies/ebbbf0d1-8121-483c-8f99-ee92597591fc",
+    "responsibilities": "<ul>\n<li>Work with large, complex data sets.</li>\n<li>Solve analysis problems, applying advanced analytical methods as needed.</li>\n<li>Build and prototype analysis pipelines iteratively to provide insights at scale.</li>\n<li>Work closely with Engineers and Product teams to identify opportunities for, design, and assess improvements of Google products.</li>\n</ul>",
+    "locations_count": 1,
+    "publish_date": "2020-12-10T19:00:50.012Z",
+    "map_urls": {
+        "large_1x": "/maps/api/staticmap?center=Tel+Aviv-Yafo%2C+Israel&key=AIzaSyBt7dRu-48vSk1eg6v4bZbTNs43pOKiS40&maptype=roadmap&markers=Tel+Aviv-Yafo%2C+Israel&size=1168x324&zoom=12&signature=2KHyFgcGZupcIju15ZTh9X8hi-I=",
+        "small_1x": "/maps/api/staticmap?center=Tel+Aviv-Yafo%2C+Israel&key=AIzaSyBt7dRu-48vSk1eg6v4bZbTNs43pOKiS40&maptype=roadmap&markers=Tel+Aviv-Yafo%2C+Israel&size=600x400&zoom=12&signature=VX86Re7NN30hrAC15NbvwnqUXDc=",
+        "large_2x": "/maps/api/staticmap?center=Tel+Aviv-Yafo%2C+Israel&key=AIzaSyBt7dRu-48vSk1eg6v4bZbTNs43pOKiS40&maptype=roadmap&markers=Tel+Aviv-Yafo%2C+Israel&scale=2&size=1024x324&zoom=12&signature=VkfuDv5Sa6gRizCQLGmOqSIE-HI=",
+        "small_2x": "/maps/api/staticmap?center=Tel+Aviv-Yafo%2C+Israel&key=AIzaSyBt7dRu-48vSk1eg6v4bZbTNs43pOKiS40&maptype=roadmap&markers=Tel+Aviv-Yafo%2C+Israel&scale=2&size=600x400&zoom=12&signature=1DjlvG82ABZ26BlhJrFOEJcL9mk="
+    },
+    "modified": "2020-12-10T19:00:49.905Z",
+    "eeo": "Google is proud to be an equal opportunity workplace and is an affirmative action employer. We are committed to equal employment opportunity regardless of race, color, ancestry, religion, sex, national origin, sexual orientation, age, citizenship, marital status, disability, gender identity or Veteran status. We also consider qualified applicants regardless of criminal histories, consistent with legal requirements. See also <a href=\"https://careers.google.com/eeo/\">Google's EEO Policy</a> and <a href=\"/jobs/dist/legal/OFCCP_EEO_Post.pdf\">EEO is the Law.</a>  If you have a disability or special need that requires accommodation, please let us know by completing <a href=\"https://goo.gl/forms/aBt6Pu71i1kzpLHe2\">this form</a>.",
+    "apply_url": "https://www.google.com/about/careers/applications/signin?jobId=CiUAL2FckWdzsMP3S2Nd8Uuq8Ua2D_G3meXMKkLAGafCb6gHqe6bEjsAFAq7gmuxyIodfJpVgPddGiNkK2aJd_Tx-V9onZJiIr-OKiKe7y-ycU0VOTX-gSlgNNuAZjG5revDwQ%3D%3D_V2&jobTitle=Senior+Data+Scientist&loc=IL",
+    "id": "jobs/138117776871957190",
+    "categories": [
+        "SOFTWARE_ENGINEERING"
+    ],
+    "company_name": "Google"
+}

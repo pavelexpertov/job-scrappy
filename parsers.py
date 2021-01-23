@@ -1,6 +1,22 @@
 import bs4
 
-class IbmParser():
+class Parser():
+    '''Base class for a parser'''
+
+    def __init__(self):
+        pass
+
+    def get_job_metadata(self):
+        '''Return dict with job's details'''
+        return {
+            'title': self.title,
+            'introduction': self.introduction_content,
+            'roles_and_responsibilities': self.roles_and_responsibilities,
+            'required_stuff': self.required_stuff,
+            'preferred_stuff': self.preferred_stuff
+        }
+
+class IbmParser(Parser):
     '''Parser class for IBM job websites.'''
 
     def __init__(self, page_content_str):
@@ -17,17 +33,6 @@ class IbmParser():
         self.roles_and_responsibilities = info_dict['roles_and_responsibilities']
         self.required_stuff = info_dict['required_stuff']
         self.preferred_stuff = info_dict['preferred_stuff']
-
-
-    def get_job_metadata(self):
-        '''Return dict with job's details'''
-        return {
-            'title': self.title,
-            'introduction': self.introduction_content,
-            'roles_and_responsibilities': self.roles_and_responsibilities,
-            'required_stuff': self.required_stuff,
-            'preferred_stuff': self.preferred_stuff
-        }
 
     def _parse_job_description(self, job_desc_tag):
         '''Parse through job description tag to extract specific content'''
@@ -54,4 +59,24 @@ class IbmParser():
             else:
                 raise ValueError(f"Couldn't find start match for {start_match}. Current tuple: {(key, start_match, end_match)}")
         return info_dict
+
+
+class GoogleParser(Parser):
+    '''Parser class for Google job websites'''
+
+    def __init__(self, json_data):
+        '''Expects a dict stucture of a return JSON data from API.'''
+        self.title = json_data['title']
+        self.introduction_content = json_data['description']
+
+        soup = bs4.BeautifulSoup(json_data['responsibilities'], features="lxml")
+        responsibilities = "\n".join([line for line in soup.stripped_strings])
+        self.roles_and_responsibilities = responsibilities
+        soup = bs4.BeautifulSoup(json_data['qualifications'], features="lxml")
+        required_ul_list = soup.find('p', string="Minimum qualifications:").next_sibling()
+        self.required_stuff = "\n".join(["- " + line.get_text() for line in required_ul_list])
+        preferred_ul_list = soup.find('p', string="Preferred qualifications:").next_sibling()
+        self.preferred_stuff = "\n".join(["- " + line.get_text() for line in preferred_ul_list])
+
+
 
