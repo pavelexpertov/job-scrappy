@@ -1,3 +1,5 @@
+import logging
+
 import bs4
 
 class Parser():
@@ -79,4 +81,81 @@ class GoogleParser(Parser):
         self.preferred_stuff = "\n".join(["- " + line.get_text() for line in preferred_ul_list])
 
 
+class BloombergParser(Parser):
+    '''Parser class for Bloomberg jobs'''
+
+    def __init__(self, page_content_str):
+        '''Expects HTML page string.'''
+        soup = bs4.BeautifulSoup(page_content_str, features="lxml")
+
+        div_job_name_title_tag = soup.find('div', class_="job-name-title")
+        self.title = div_job_name_title_tag.h2.get_text()
+
+        div_parent = soup.find(id="we-ll-trust-you-to").parent
+        # Extracting introduction content
+        text_list = []
+        for tag in div_parent.children:
+            if tag.name != 'h3':
+                try:
+                    text_list.append(tag.get_text())
+                except AttributeError:
+                    logging.warning("BloombergParser: A tag didn't have 'get_text' function attribute")
+            else:
+                break
+        self.introduction_content = "\n".join(text_list)
+
+        # Finding whether more-about-us section exists and if it does,
+        # assign it to roles and responsibilities
+        more_about_us_id = div_parent.find(id="more-about-us")
+        if more_about_us_id:
+            text_list = []
+            for tag in more_about_us_id.next_siblings:
+                if tag.name != 'h3':
+                    try:
+                        text_list.append(tag.get_text())
+                    except AttributeError:
+                        logging.warning("BloombergParser: A tag didn't have 'get_text' function attribute")
+                else:
+                    break
+            self.roles_and_responsibilities = "\n".join(text_list)
+        else:
+            self.roles_and_responsibilities = ''
+
+        # Finding "in-the-upcoming-year,-you..." id and if found,
+        # Attach it to the roles_and_responsibilities
+        id_of_interest = "in-the-upcoming-year,-you-should-expect-to-work-on-the-following"
+        in_the_upcoming_year_id = div_parent.find(id=id_of_interest)
+        if in_the_upcoming_year_id:
+            text_list = []
+            # Problem's here
+            for tag in in_the_upcoming_year_id.next_siblings:
+                if tag.name != 'h3':
+                    try:
+                        text_list.append(tag.get_text())
+                    except AttributeError:
+                        logging.warning("BloombergParser: A tag didn't have 'get_text' function attribute")
+                else:
+                    break
+            content = "\n".join(text_list)
+            if self.roles_and_responsibilities:
+                self.roles_and_responsibilities += "\n" + content
+            else:
+                self.roles_and_responsibilities = content
+
+        # Finding required stuff
+        you_ll_need_to_have_id_tag = div_parent.find(id="you-ll-need-to-have")
+        if you_ll_need_to_have_id_tag:
+            ul_tag = you_ll_need_to_have_id_tag.find_next_sibling('ul')
+            text_list = []
+            self.required_stuff = "\n".join([line for line in ul_tag.stripped_strings])
+        else:
+            self.required_stuff = ''
+
+        # Finding preferred stuff, if it exists, assign it to preferred_stuff
+        we_d_love_to_see_id_tag = div_parent.find(id="we-d-love-to-see")
+        if we_d_love_to_see_id_tag:
+            ul_tag = we_d_love_to_see_id_tag.find_next_sibling('ul')
+            self.preferred_stuff = "\n".join([line for line in ul_tag.stripped_strings])
+        else:
+            self.preferred_stuff = ''
 

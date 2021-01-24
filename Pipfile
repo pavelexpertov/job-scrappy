@@ -11,9 +11,10 @@ python-docx = "*"
 
 [dev-packages]
 ipython = "*"
+ipdb = "*"
 
 [requires]
 python_version = "3.8"
 
 [scripts]
-tests = "python -m unittest discover tests"
+tests = "python -W ignore -m unittest discover tests"
