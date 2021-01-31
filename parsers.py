@@ -159,3 +159,16 @@ class BloombergParser(Parser):
         else:
             self.preferred_stuff = ''
 
+
+class FacebookParser(Parser):
+    '''Parser for extracting details from Facebook career pages'''
+
+    def __init__(self, page_content_str):
+        '''Expects HTML content'''
+
+        soup = bs4.BeautifulSoup(page_content_str, features="lxml")
+        self.title = soup.find('div', class_=["_9ata","_8ww0"]).get_text()
+
+        # finding stuff for introduction content
+        # (at the moment can't find a convenient way
+        self.introduction_content = ''
