@@ -99,7 +99,7 @@ class BloombergParser(Parser):
                 try:
                     text_list.append(tag.get_text())
                 except AttributeError:
-                    logging.warning("BloombergParser: A tag didn't have 'get_text' function attribute")
+                    logging.debug("BloombergParser: A tag didn't have 'get_text' function attribute")
             else:
                 break
         self.introduction_content = "\n".join(text_list)
@@ -114,7 +114,7 @@ class BloombergParser(Parser):
                     try:
                         text_list.append(tag.get_text())
                     except AttributeError:
-                        logging.warning("BloombergParser: A tag didn't have 'get_text' function attribute")
+                        logging.debug("BloombergParser: A tag didn't have 'get_text' function attribute")
                 else:
                     break
             self.roles_and_responsibilities = "\n".join(text_list)
@@ -133,7 +133,7 @@ class BloombergParser(Parser):
                     try:
                         text_list.append(tag.get_text())
                     except AttributeError:
-                        logging.warning("BloombergParser: A tag didn't have 'get_text' function attribute")
+                        logging.debug("BloombergParser: A tag didn't have 'get_text' function attribute")
                 else:
                     break
             content = "\n".join(text_list)
@@ -169,6 +169,23 @@ class FacebookParser(Parser):
         soup = bs4.BeautifulSoup(page_content_str, features="lxml")
         self.title = soup.find('div', class_=["_9ata","_8ww0"]).get_text()
 
-        # finding stuff for introduction content
-        # (at the moment can't find a convenient way
-        self.introduction_content = ''
+        content_div_tag = soup.find('div', class_="_8muv")
+
+        self.introduction_content = content_div_tag.find('div', class_="_1n-_ _6hy- _94t2").get_text()
+
+        responsibilities_div_tag = content_div_tag.find('div', string=self.title + " Responsibilities")
+        minimum_qualifications_div_tag = content_div_tag.find('div', string="Minimum Qualifications")
+        preferred_qualifications_div_tag = content_div_tag.find('div', string="Preferred Qualifications")
+
+        tag_of_interest = responsibilities_div_tag.next_sibling
+        self.roles_and_responsibilities = "\n".join(self._parse_ul_tag(tag_of_interest.find('ul')))
+
+        tag_of_interest = minimum_qualifications_div_tag.next_sibling
+        self.required_stuff = "\n".join(self._parse_ul_tag(tag_of_interest.find('ul')))
+
+        tag_of_interest = preferred_qualifications_div_tag.next_sibling
+        self.preferred_stuff = "\n".join(self._parse_ul_tag(tag_of_interest.find('ul')))
+
+    def _parse_ul_tag(self, ul_tag_parser):
+        '''Return a list of parsed list items from a `ul` tag'''
+        return ["- " + line.get_text() for line in ul_tag_parser]
