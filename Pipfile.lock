@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0aaed50b5d2c6d6c27c9510812a81bea6aa82d044ebb213a4232a61643437458"
+            "sha256": "f93a343461036a503e333141d834d6a45dcc6829778465d73fd32631cef28987"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -39,6 +39,14 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
             "version": "==4.0.0"
+        },
+        "click": {
+            "hashes": [
+                "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a",
+                "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"
+            ],
+            "index": "pypi",
+            "version": "==7.1.2"
         },
         "colorama": {
             "hashes": [
@@ -158,7 +166,7 @@
                 "sha256:1b465e494e3e0d8939b50680403e3aedaa2bc434b7d5af64dfd3c958d7f5ae80",
                 "sha256:de3eedaad74a2683334e282005cd8d7f22f4d55fa690a2a1020a416cb0a47e73"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4.0'",
             "version": "==1.26.3"
         }
     },

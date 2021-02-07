@@ -8,6 +8,7 @@ beautifulsoup4 = "*"
 requests = "*"
 rich = "*"
 python-docx = "*"
+click = "*"
 
 [dev-packages]
 ipython = "*"
