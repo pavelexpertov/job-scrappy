@@ -12,6 +12,8 @@ python-docx = "*"
 [dev-packages]
 ipython = "*"
 ipdb = "*"
+jedi = "==0.17.2"
+parso = "==0.7.1"
 
 [requires]
 python_version = "3.8"
