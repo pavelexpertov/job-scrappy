@@ -11,7 +11,8 @@ def get_page_content(url):
         url_path = urllib.parse.urlparse(url).path
         job_id = url_path.split('/')[3].split('-')[0]
         api_url_string = "https://careers.google.com/api/v2/jobs/get"
-        response = requests.get(api_url_string, params={'job_name': job_id})
+        response = requests.get(api_url_string, params={'job_name': f"jobs/{job_id}"})
+        response.raise_for_status()
         return response.json()
     else:
         return requests.get(url).text
