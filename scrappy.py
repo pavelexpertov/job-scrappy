@@ -1,4 +1,9 @@
+from pprint import pprint
+
 import click
+
+import http_ops
+import parsers
 
 @click.group()
 def cli():
@@ -18,7 +23,16 @@ def get_metadatas(urls_file_path, document_file_path):
     with open(urls_file_path) as file_obj:
         url_list = [line.strip() for line in file_obj.readlines()]
 
-    click.echo(url_list)
+    parsed_content_list = []
+    for url in url_list:
+        domain_name = http_ops.get_domain(url)
+        content = http_ops.get_page_content(url)
+        content_dict = parsers.parse_content(domain_name, content)
+        content_dict['passed_url'] = url
+        parsed_content_list.append(content_dict)
+    
+    pprint(parsed_content_list)
+
 
 if __name__ == "__main__":
     cli()

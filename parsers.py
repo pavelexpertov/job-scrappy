@@ -2,6 +2,21 @@ import logging
 
 import bs4
 
+
+def parse_content(domain_name, content):
+    '''Return a dict with parsed content'''
+
+    if domain_name == 'google':
+        return GoogleParser(content).get_job_metadata()
+    elif domain_name == 'ibm':
+        return IbmParser(content).get_job_metadata()
+    elif domain_name == 'facebook':
+        return FacebookParser(content).get_job_metadata()
+    elif domain_name == 'bloomberg':
+        return BloombergParser(content).get_job_metadata()
+    else:
+        raise ValueError(f"'{domain_name}' is not one of available parsers.")
+
 class Parser():
     '''Base class for a parser'''
 
