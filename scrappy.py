@@ -2,6 +2,7 @@ from pprint import pprint
 
 import click
 
+import document_ops
 import http_ops
 import parsers
 
@@ -29,9 +30,10 @@ def get_metadatas(urls_file_path, document_file_path):
         content = http_ops.get_page_content(url)
         content_dict = parsers.parse_content(domain_name, content)
         content_dict['passed_url'] = url
+        content_dict['company'] = domain_name
         parsed_content_list.append(content_dict)
-    
-    pprint(parsed_content_list)
+
+    document_ops.generate_document(parsed_content_list, document_file_path)
 
 
 if __name__ == "__main__":
