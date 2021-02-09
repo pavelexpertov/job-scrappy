@@ -8,7 +8,7 @@ def generate_document(content_list, file_path):
     # Setting up Landscape mode for a page
     section = document.sections[0]
     section.orientation = docx.enum.section.WD_ORIENT.LANDSCAPE
-    new_height, new_width = section.page_width, section.page_height
+    new_height, new_width = docx.shared.Inches(11), docx.shared.Inches(15)
     section.page_height, section.page_width = new_height, new_width
 
     for content in content_list:
