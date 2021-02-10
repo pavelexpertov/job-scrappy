@@ -15,8 +15,12 @@ def get_page_content(url):
         response.raise_for_status()
         return response.json()
     else:
-        return requests.get(url).text
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.text
+
 
 def get_domain(url):
     '''Get domain name from a given URL'''
     return urllib.parse.urlparse(url).netloc.split('.')[-2]
+
