@@ -198,8 +198,11 @@ class FacebookParser(Parser):
         tag_of_interest = minimum_qualifications_div_tag.next_sibling
         self.required_stuff = "\n".join(self._parse_ul_tag(tag_of_interest.find('ul')))
 
-        tag_of_interest = preferred_qualifications_div_tag.next_sibling
-        self.preferred_stuff = "\n".join(self._parse_ul_tag(tag_of_interest.find('ul')))
+        if preferred_qualifications_div_tag:
+            tag_of_interest = preferred_qualifications_div_tag.next_sibling
+            self.preferred_stuff = "\n".join(self._parse_ul_tag(tag_of_interest.find('ul')))
+        else:
+            self.preferred_stuff = "Not Provided"
 
     def _parse_ul_tag(self, ul_tag_parser):
         '''Return a list of parsed list items from a `ul` tag'''

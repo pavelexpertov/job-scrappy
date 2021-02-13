@@ -100,3 +100,49 @@ class TestFacebookSoftwareEngineerSystemsMlRole(unittest.TestCase):
         preferred_stuff = parser.get_job_metadata()['preferred_stuff']
         one_expected_point = "- Experience with distributed systems or on-device algorithm development"
         self.assertEqual(preferred_stuff, one_expected_point)
+
+
+class TestFacebookVisitingScientistAiRole(unittest.TestCase):
+    '''Test Facebook Career parsers for a visiting scientist AI role'''
+
+    def setUp(self):
+        '''Get html content'''
+        with open('tests/facebook_visiting_scientist_ai_role.html') as file_obj:
+            self.HTML_CONTENT = file_obj.read()
+
+    def test_title_extraction(self):
+        '''Test for successful extraction of a title.'''
+        parser = FacebookParser(self.HTML_CONTENT)
+        title = parser.get_job_metadata()['title']
+        self.assertEqual('Visiting Scientist, AI', title)
+
+    def test_overview_extraction(self):
+        '''Test for successful extraction for introduction_content'''
+        parser = FacebookParser(self.HTML_CONTENT)
+        introduction_content = parser.get_job_metadata()['introduction']
+        expected = "Facebook is seeking Visiting Scientists to join our Facebook Artificial Intelligence Research team. Term length would be considered on a case-by-case basis."
+        self.assertEqual(introduction_content, expected)
+
+    def test_roles_and_responsibilities_extraction(self):
+        '''Test for successful extraction for roles and responsibilities'''
+        parser = FacebookParser(self.HTML_CONTENT)
+        responsibilities = parser.get_job_metadata()['roles_and_responsibilities']
+        expected_point = "- Contribute research that can be applied to Facebook product development"
+        self.assertEqual(responsibilities, expected_point)
+
+    def test_required_stuff_extraction(self):
+        '''Test for successful extraction for required_stuff'''
+        parser = FacebookParser(self.HTML_CONTENT)
+        required_stuff = parser.get_job_metadata()['required_stuff']
+        expected_first_point = "- Currently holding a faculty or government researcher position"
+        self.assertTrue(required_stuff.startswith(expected_first_point), msg="First point of required stuff doesn't match.")
+        expected_last_point = "- Academic publications in the field of machine learning"
+        self.assertTrue(required_stuff.endswith(expected_last_point), msg="Last point of required stuff doesn't match.")
+
+    def test_preferred_stuff_extraction(self):
+        '''Test for default 'Not Provided' value when preferred list wasn't available'''
+        parser = FacebookParser(self.HTML_CONTENT)
+        preferred_stuff = parser.get_job_metadata()['preferred_stuff']
+        expected = "Not Provided"
+        self.assertEqual(preferred_stuff, expected)
+
