@@ -1,7 +1,6 @@
 from datetime import datetime
 
 import click
-from requests import HTTPError
 
 import document_ops
 import http_ops
@@ -34,7 +33,7 @@ def get_metadatas(urls_file_path, document_file_path):
             content_dict['passed_url'] = url
             content_dict['company'] = domain_name
             parsed_content_list.append(content_dict)
-        except HTTPError as exc:
+        except http_ops.HttpOpsError as exc:
             errors_list.append(str(exc))
 
     document_ops.generate_document(parsed_content_list, document_file_path)
