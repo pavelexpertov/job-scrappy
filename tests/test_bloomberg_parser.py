@@ -5,10 +5,11 @@ from parsers import BloombergParser
 class TestBloombergParserWithAiGroupEngineer(unittest.TestCase):
     '''Test bloomberg parser for a job of AI group software engineer'''
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         '''Get the html content'''
         with open('tests/bloomberg_ai_group_software_engineer.html') as file_obj:
-            self.HTML_CONTENT = file_obj.read()
+            cls.HTML_CONTENT = file_obj.read()
 
     def test_more_about_us_extraction(self):
         '''Test extraction of 'More about us:' sub-header'''
@@ -30,10 +31,11 @@ class TestBloombergParserWithAiGroupEngineer(unittest.TestCase):
 class TestBloombergParserWithMlEngineerDataAutomation(unittest.TestCase):
     '''Test bloomberg parser for a job of Machine Learning engineer - data automation'''
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         '''Get the html content'''
         with open('tests/bloomberg_ml_engineer_data_automation.html') as file_obj:
-            self.HTML_CONTENT = file_obj.read()
+            cls.HTML_CONTENT = file_obj.read()
 
     def test_for_in_the_upcoming_year_without_more_about_us_extraction(self):
         '''Test for successful extraction of 'in the upcoming year' when 'more about us' is missing'''
