@@ -84,10 +84,11 @@ class GoogleParser(Parser):
     def __init__(self, json_data):
         '''Expects a dict stucture of a return JSON data from API.'''
         self.title = json_data['title']
-        self.introduction_content = json_data['description']
+        content = json_data['description'].replace('<p>', '\n')
+        self.introduction_content = content.replace('</p>', '')
 
         soup = bs4.BeautifulSoup(json_data['responsibilities'], features="lxml")
-        responsibilities = "\n".join([line for line in soup.stripped_strings])
+        responsibilities = "\n".join(["- " + line.strip() for line in soup.stripped_strings])
         self.roles_and_responsibilities = responsibilities
         soup = bs4.BeautifulSoup(json_data['qualifications'], features="lxml")
         required_ul_list = soup.find('p', string="Minimum qualifications:").next_sibling()
